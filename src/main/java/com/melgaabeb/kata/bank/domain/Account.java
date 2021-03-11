@@ -16,16 +16,22 @@ public class Account {
     }
 
     public Integer withdrawal(float amount) {
-        Integer operationStatus = 0;
-        if (amount > balance) {
-            operationStatus = 1;
+        OperationStatus operationStatus = OperationStatus.OK;
+
+        if (isReceivable(amount)) {
+            operationStatus = OperationStatus.ACCOUNT_RECEIVABLE;
         } else {
             balance -= amount;
         }
-        return operationStatus;
+
+        return operationStatus.getStatusCode();
     }
 
     public float getBalance() {
         return balance;
+    }
+
+    public boolean isReceivable(float amount) {
+        return (amount > balance);
     }
 }
