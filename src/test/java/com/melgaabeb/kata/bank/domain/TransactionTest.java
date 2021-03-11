@@ -36,4 +36,21 @@ public class TransactionTest {
         assertEquals("deposit", operation);
         assertEquals(transactionDate, expetedDate);
     }
+
+    @Test
+    public void Given_Withdrawal_Transaction_When_Get_Amount_and_operation_Then_Amount_is_Positive_And_Operation_is_withdrawal_And_date_is_today() {
+        // Given
+        Transaction transaction = new Transaction(-12, 24);
+
+        // When
+        String operation = transaction.getOperation();
+        float amount = transaction.getAbsoluteAmount();
+        String transactionDate = transaction.getFormattedDate();
+
+        // Then
+        assertEquals(12, amount, 0);
+        assertTrue(amount > 0);
+        assertEquals("withdrawal",operation);
+        assertEquals(transactionDate,expetedDate);
+    }
 }
