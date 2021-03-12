@@ -1,9 +1,10 @@
 package com.melgaabeb.kata.bank.domain;
 
+import com.melgaabeb.kata.bank.ui.ConsoleDisplayer;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.melgaabeb.kata.bank.ui.ConsolerDisplayer;
 import com.melgaabeb.kata.bank.ui.Displayer;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -27,7 +28,7 @@ public class AccountTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         expetedDate = dateFormat.format(new Date());
 
-        consoleDisplayerMock = mock(ConsolerDisplayer.class);
+        consoleDisplayerMock = mock(ConsoleDisplayer.class);
 
         doAnswer(invocation -> {
             Object arg0 = invocation.getArgument(0);
@@ -49,7 +50,7 @@ public class AccountTest {
     @Test
     public void Given_An_Account_When_Withdrawal_Amount_available_in_account_Then_Amount_is_removed() {
         // Given
-        Account account = new Account(12);
+        Account account = new Account(12, consoleDisplayerMock);
         // When
         int operationStatus = account.withdrawal(5);
         // Then

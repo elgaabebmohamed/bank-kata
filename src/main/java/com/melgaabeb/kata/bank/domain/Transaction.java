@@ -32,4 +32,9 @@ public class Transaction {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(date);
     }
+
+    @Override
+    public String toString() {
+        return getOperation() +  " || "  + getFormattedDate() + " || " + getAbsoluteAmount() + " || " + this.balance;
+    }
 }
